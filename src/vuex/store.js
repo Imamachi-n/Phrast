@@ -8,6 +8,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     word: "",
+    sentences: "",
   },
   mutations: {
     setWord(state, word) {
@@ -33,6 +34,14 @@ export default new Vuex.Store({
         });
         const res = await axios.get("?random=true");
         commit("setWord", res.data.word);
+      } catch (err) {
+        console.error("Errors!", err);
+      }
+    },
+    async saveSentences() {
+      try {
+        // API
+        console.log("Insert your sentences");
       } catch (err) {
         console.error("Errors!", err);
       }

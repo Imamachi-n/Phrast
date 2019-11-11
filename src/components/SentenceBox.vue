@@ -1,17 +1,25 @@
 <template>
-  <div class="sentences">
-    <h1>sentences</h1>
-    <button></button>
+  <div class="sentenceBox">
+    <input type="text" placeholder="Write your sentences" v-model="sentences" @change="test" />
+    <button>Submit your sentences</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Words",
+  name: "SentenceBox",
   props: {
     msg: String,
   },
-  methods: {},
+  data: () => ({
+    sentences: "TEST",
+  }),
+  methods: {
+    test() {
+      // FIXME: Just for test
+      console.log(this.$data.sentences);
+    },
+  },
   async created() {
     this.$store.dispatch("getRandomEnglishWord");
   },

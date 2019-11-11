@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <Words msg="Welcome to English Training App" />
+    <SentenceBox></SentenceBox>
   </div>
 </template>
 
 <script>
 import Words from "./components/Words.vue";
+import SentenceBox from "./components/SentenceBox.vue";
 
 export default {
   name: "app",
   components: {
     Words,
+    SentenceBox,
   },
 };
 </script>

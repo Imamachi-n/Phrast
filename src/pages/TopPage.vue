@@ -4,35 +4,17 @@
       <v-col class="text-center">
         <h1 class="pb-10 pt-12">Welcome to English Training App</h1>
         <v-spacer></v-spacer>
-        <v-btn x-large color="primary" v-if="!isStarted" @click="clickStart">Game Start!!</v-btn>
+        <v-btn x-large color="primary" @click.native="clickStart" to="/game">Game Start!!</v-btn>
       </v-col>
     </v-row>
-
-    <div v-if="isStarted">
-      <Words msg="Welcome to English Training App" />
-      <SentenceBox></SentenceBox>
-    </div>
-
-    <router-link to="/config">Go to home</router-link>
   </div>
 </template>
 
 <script>
-import Words from "../components/Words.vue";
-import SentenceBox from "../components/SentenceBox.vue";
-
 export default {
   name: "topPage",
-  components: {
-    Words,
-    SentenceBox,
-  },
-  data: () => ({
-    isStarted: false,
-  }),
   methods: {
     clickStart() {
-      this.$data.isStarted = !this.$data.isStarted;
       // FIXME: gameLevel: 1
       this.$store.dispatch("startGame", 1);
     },

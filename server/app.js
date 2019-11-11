@@ -31,6 +31,28 @@ app.get("/api/words/:levelId", async (req, res) => {
   }
 });
 
+app.get("/api/reviews/all", async (req, res) => {
+  try {
+    // Get all reviews
+    let data = await db("reviews")
+      .join("sentences", "reviews.id", "=", "sentences.review_id")
+      .select({
+        id: "reviews.id",
+        order: "sentences.order",
+        at_datetime: "reviews.at_datetime",
+        sentence: "sentences.sentence",
+      })
+      .orderBy("sentences.order")
+      .orderBy("reviews.id");
+
+    console.log(data);
+    res.status(200).json(data);
+  } catch (err) {
+    console.error("Error posting your game!", err);
+    res.sendStatus(500);
+  }
+});
+
 app.post("/api/reviews", async (req, res) => {
   try {
     const { gameLevel } = req.body;

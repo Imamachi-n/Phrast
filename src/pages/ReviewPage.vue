@@ -1,15 +1,12 @@
 <template>
   <div class="config">
-    <h2>Config</h2>
+    <h2>Review</h2>
   </div>
 </template>
 
 <script>
 export default {
-  name: "ConfigPage",
-  props: {
-    msg: String,
-  },
+  name: "reviewPage",
   methods: {},
 };
 </script>

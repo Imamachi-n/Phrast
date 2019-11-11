@@ -13,7 +13,7 @@
           <v-icon>mdi-heart</v-icon>
         </v-btn>
 
-        <v-btn icon>
+        <v-btn icon to="/review">
           <v-icon>fas fa-book</v-icon>
         </v-btn>
 

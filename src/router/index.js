@@ -4,6 +4,7 @@ import Router from "vue-router";
 import TopPage from "../pages/TopPage.vue";
 import ConfigPage from "../pages/ConfigPage";
 import GamePage from "../pages/GamePage.vue";
+import ReviewPage from "../pages/ReviewPage.vue";
 
 Vue.use(Router);
 
@@ -20,6 +21,10 @@ export default new Router({
     {
       path: "/game",
       component: GamePage,
+    },
+    {
+      path: "/review",
+      component: ReviewPage,
     },
   ],
 });

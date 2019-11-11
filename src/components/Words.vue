@@ -1,6 +1,6 @@
 <template>
   <div class="words">
-    <h2>{{ $store.getters["getWord"] }}</h2>
+    <h1>{{ $store.getters["getWord"] }}</h1>
   </div>
 </template>
 
@@ -20,6 +20,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+h1 {
+  font-size: 60px;
+  margin: 50px;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+}
 h3 {
   margin: 40px 0 0;
 }

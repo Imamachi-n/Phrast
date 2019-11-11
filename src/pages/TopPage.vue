@@ -1,12 +1,14 @@
 <template>
   <div id="top">
-    <v-row>
-      <v-col class="text-center">
-        <h1 class="pb-10 pt-12">Welcome to English Training App</h1>
-        <v-spacer></v-spacer>
-        <v-btn x-large color="primary" @click.native="clickStart" to="/game">Game Start!!</v-btn>
-      </v-col>
-    </v-row>
+    <div id="cover">
+      <v-row>
+        <v-col class="text-center">
+          <h1 class="pb-10 pt-12">Welcome to English Training App</h1>
+          <v-spacer></v-spacer>
+          <v-btn x-large color="primary" @click.native="clickStart" to="/game">Game Start!!</v-btn>
+        </v-col>
+      </v-row>
+    </div>
   </div>
 </template>
 
@@ -29,6 +31,16 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-image: url(../assets/background.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  /* background-attachment: fixed; */
+  background-size: cover;
+  height: 100%;
+}
+#cover {
+  background-color: rgba(0, 0, 0, 0.3);
+  height: 100%;
 }
 h1 {
   font-size: 56px;

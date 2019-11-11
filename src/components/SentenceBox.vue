@@ -1,12 +1,25 @@
 <template>
   <div class="sentenceBox">
-    <input
-      type="text"
-      placeholder="Write your sentences"
-      v-model="sentences"
-      @change="test"
-    />
-    <button @click="postSentences">Submit your sentences</button>
+    <v-container>
+      <v-row>
+        <v-col>
+          <v-textarea
+            outlined
+            name="sentences"
+            label="Your Sentences"
+            value="The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
+            v-model="sentences"
+            :rules="nameRules"
+            required
+          ></v-textarea>
+        </v-col>
+      </v-row>
+      <v-row class="text-center">
+        <v-col class="text-center">
+          <v-btn x-large color="primary" @click="postSentences">Submit your sentences</v-btn>
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
@@ -20,12 +33,14 @@ export default {
     sentences: "TEST",
   }),
   methods: {
-    test() {
-      // FIXME: Just for test
-      console.log(this.$data.sentences);
-    },
     postSentences() {
       this.$store.dispatch("saveSentences", this.$data.sentences);
+      // FIXME: Just for test
+      const test = true;
+      if (test) {
+        this.$store.dispatch("getRandomEnglishWord");
+        console.log("JUST TEST!!");
+      }
     },
   },
 };

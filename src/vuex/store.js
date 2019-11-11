@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import axios from "axios";
+// import axiosBase from "axios";
 
 Vue.use(Vuex);
 
@@ -16,7 +16,7 @@ export default new Vuex.Store({
   actions: {
     async getRandomEnglishWord({ commit }) {
       try {
-        const words = await axios.get("/api/locations");
+        const words = "TEST!!";
         commit("setWord", words);
       } catch (err) {
         console.error(err);

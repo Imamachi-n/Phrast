@@ -1,6 +1,11 @@
 <template>
   <div class="sentenceBox">
-    <input type="text" placeholder="Write your sentences" v-model="sentences" @change="test" />
+    <input
+      type="text"
+      placeholder="Write your sentences"
+      v-model="sentences"
+      @change="test"
+    />
     <button @click="postSentences">Submit your sentences</button>
   </div>
 </template>

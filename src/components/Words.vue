@@ -1,6 +1,6 @@
 <template>
   <div class="words">
-    <h2>{{$store.getters['getWord']}}</h2>
+    <h2>{{ $store.getters["getWord"] }}</h2>
   </div>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
-  <div class="words">
-    <h1>{{ msg }}</h1>
-    <h2>{{$store.getters['getWord']}}</h2>
+  <div class="sentences">
+    <h1>sentences</h1>
+    <button></button>
   </div>
 </template>
 

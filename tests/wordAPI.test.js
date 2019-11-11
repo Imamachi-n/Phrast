@@ -12,7 +12,7 @@ async function wordAPITest() {
       headers: credential,
       responseType: "json",
     });
-    const res = await axios.get("/hatchback/typeOf");
+    const res = await axios.get("?random=true");
     console.log(res.data);
   } catch (err) {
     console.error("Errors!", err);

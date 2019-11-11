@@ -33,11 +33,37 @@ app.get("/api/words/:levelId", async (req, res) => {
 
 app.post("/api/reviews", async (req, res) => {
   try {
-    const { sentences } = req.body;
-    // const getNumber = await db("")
+    const { gameLevel } = req.body;
 
-    // TODO: Reviewsの番号を返す
-    res.status(200).json("Number");
+    // Get gameNumber
+    let count = await db("reviews").count("id");
+    count = Number(count[0].count) + 1;
+
+    // Insert Current Game
+    await db("reviews").insert({
+      id: count,
+      level_id: gameLevel,
+    });
+
+    res.status(200).json({
+      gameNo: count,
+    });
+  } catch (err) {
+    console.error("Error posting your game!", err);
+    res.sendStatus(500);
+  }
+});
+
+app.post("/api/sentences", async (req, res) => {
+  try {
+    const { gameNo, sentences } = req.body;
+    await db("sentences").insert({
+      review_id: gameNo,
+      order: 1,
+      sentence: sentences,
+    });
+
+    res.sendStatus(200);
   } catch (err) {
     console.error("Error posting your sentences!", err);
     res.sendStatus(500);

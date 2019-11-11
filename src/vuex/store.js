@@ -9,6 +9,7 @@ export default new Vuex.Store({
   state: {
     word: "",
     sentences: "",
+    gameNo: "",
   },
   mutations: {
     setWord(state, word) {
@@ -16,6 +17,9 @@ export default new Vuex.Store({
     },
     setSentences(state, sentences) {
       state.sentences = sentences;
+    },
+    setGame(state, gameNo) {
+      state.gameNo = gameNo;
     },
   },
   actions: {
@@ -43,13 +47,28 @@ export default new Vuex.Store({
     },
     async saveSentences({ commit }, sentences) {
       try {
-        const res = await axios.post("/api/reviews", {
+        const res = await axios.post("/api/sentences", {
+          gameNo: this.state.gameNo,
           sentences,
         });
-        console.log(res);
         console.log("Sent your sentences: ");
         console.log(sentences);
-        commit("setSentences", sentences);
+        if (res.status === 200 && res.statusText === "OK") {
+          commit("setSentences", sentences);
+        } else {
+          console.log("ERRORS: cannot save your sentences");
+        }
+      } catch (err) {
+        console.error("Errors!", err);
+      }
+    },
+    async startGame({ commit }, gameLevel) {
+      try {
+        const res = await axios.post("/api/reviews", {
+          gameLevel,
+        });
+        console.log(res);
+        commit("setGame", res.data.gameNo);
       } catch (err) {
         console.error("Errors!", err);
       }

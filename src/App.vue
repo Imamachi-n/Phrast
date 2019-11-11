@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <h1>Welcome to English Training App</h1>
-    <button v-if="!isStarted" @click="isStarted = !isStarted">Start!!</button>
+    <button v-if="!isStarted" @click="clickStart">Start!!</button>
 
     <div v-if="isStarted">
       <Words msg="Welcome to English Training App" />
@@ -26,6 +26,8 @@ export default {
   methods: {
     clickStart() {
       this.$data.isStarted = !this.$data.isStarted;
+      // FIXME: gameLevel: 1
+      this.$store.dispatch("startGame", 1);
     },
   },
 };

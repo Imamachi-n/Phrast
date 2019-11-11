@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node server",
+    "start": "yarn rollback:all && yarn migrate && yarn seed && node server",
     "dev": "nodemon server",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
+    "db:setup": "yarn rollback:all && yarn migrate && yarn seed",
     "migrate:make": "knex migrate:make --knexfile server/knexfile.js",
     "migrate": "knex migrate:latest --knexfile server/knexfile.js",
     "rollback": "knex migrate:rollback --knexfile server/knexfile.js",

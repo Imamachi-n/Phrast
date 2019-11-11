@@ -1,4 +1,4 @@
-exports.up = function(knex) {
+exports.up = function (knex) {
   return knex.schema.createTable("reviews", (table) => {
     table.integer("id").primary();
 
@@ -7,9 +7,15 @@ exports.up = function(knex) {
         precision: 6,
       })
       .defaultTo(knex.fn.now(6));
+
+    table.integer("level_id");
+    table
+      .foreign("level_id")
+      .references("id")
+      .inTable("levels");
   });
 };
 
-exports.down = function(knex) {
+exports.down = function (knex) {
   return knex.schema.dropTable("reviews");
 };

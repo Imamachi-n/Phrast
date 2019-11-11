@@ -2,7 +2,11 @@ exports.up = function(knex) {
   return knex.schema.createTable("sentences", (table) => {
     table.increments().index();
 
-    table.string("review_id");
+    table.integer("review_id");
+    table
+      .foreign("review_id")
+      .references("id")
+      .inTable("reviews");
 
     table.integer("order");
 

@@ -14,10 +14,14 @@ app.use(
 // Serve static assets
 app.use(express.static(path.resolve(__dirname, "..", "dist")));
 
-app.get("/api/test", async (req, res) => {
+app.get("/api/words/:levelId", async (req, res) => {
   try {
-    //using moch JSON files
-    res.json({});
+    const { levelId } = req.params();
+    const wordsByLevel = await db("words")
+      .select()
+      .where("level_id", levelId);
+
+    res.json(wordsByLevel);
   } catch (err) {
     console.error("Error loading locations!", err);
     res.sendStatus(500);

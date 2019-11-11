@@ -1,0 +1,16 @@
+[{
+        "id": 1,
+        "word": "apple",
+        "level_id": 1
+    },
+    {
+        "id": 2,
+        "word": "kind",
+        "level_id": 1
+    },
+    {
+        "id": 3,
+        "word": "book",
+        "level_id": 1
+    }
+]

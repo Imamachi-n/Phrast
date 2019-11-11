@@ -1,0 +1,21 @@
+[{
+        "id": 1,
+        "level": "Easy",
+        "description": "Use 500 words"
+    },
+    {
+        "id": 2,
+        "level": "Normal",
+        "description": "Use 1000 words"
+    },
+    {
+        "id": 3,
+        "level": "Difficult",
+        "description": "Use 2000 words"
+    },
+    {
+        "id": 4,
+        "level": "Programming",
+        "description": "The term of technical words related with Programming"
+    }
+]

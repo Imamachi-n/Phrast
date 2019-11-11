@@ -1,6 +1,5 @@
 <template>
   <div class="words">
-    <h1>{{ msg }}</h1>
     <h2>{{$store.getters['getWord']}}</h2>
   </div>
 </template>
@@ -13,7 +12,8 @@ export default {
   },
   methods: {},
   async created() {
-    this.$store.dispatch("getRandomEnglishWord");
+    if (this.$store.getters["getWord"] === "")
+      this.$store.dispatch("getRandomEnglishWord");
   },
 };
 </script>

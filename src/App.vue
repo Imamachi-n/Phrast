@@ -1,7 +1,12 @@
 <template>
   <div id="app">
-    <Words msg="Welcome to English Training App" />
-    <SentenceBox></SentenceBox>
+    <h1>Welcome to English Training App</h1>
+    <button v-if="!isStarted" @click="isStarted = !isStarted">Start!!</button>
+
+    <div v-if="isStarted">
+      <Words msg="Welcome to English Training App" />
+      <SentenceBox></SentenceBox>
+    </div>
   </div>
 </template>
 
@@ -14,6 +19,14 @@ export default {
   components: {
     Words,
     SentenceBox,
+  },
+  data: () => ({
+    isStarted: false,
+  }),
+  methods: {
+    clickStart() {
+      this.$data.isStarted = !this.$data.isStarted;
+    },
   },
 };
 </script>

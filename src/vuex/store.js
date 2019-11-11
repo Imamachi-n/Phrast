@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import axiosBase from "axios";
+import axios from "axios";
 // import fs from "fs";
 
 Vue.use(Vuex);
@@ -14,6 +14,9 @@ export default new Vuex.Store({
     setWord(state, word) {
       state.word = word;
     },
+    setSentences(state, sentences) {
+      state.sentences = sentences;
+    },
   },
   actions: {
     async getRandomEnglishWord({ commit }) {
@@ -21,7 +24,7 @@ export default new Vuex.Store({
         // const credential = JSON.parse(
         //   fs.readFileSync("../../config/wordAPI-credential.json")
         // );
-        const axios = axiosBase.create({
+        const axiosMod = axios.create({
           baseURL: "https://wordsapiv1.p.rapidapi.com/words",
           headers: {
             "x-rapidapi-host":
@@ -32,16 +35,21 @@ export default new Vuex.Store({
           },
           responseType: "json",
         });
-        const res = await axios.get("?random=true");
+        const res = await axiosMod.get("?random=true");
         commit("setWord", res.data.word);
       } catch (err) {
         console.error("Errors!", err);
       }
     },
-    async saveSentences() {
+    async saveSentences({ commit }, sentences) {
       try {
-        // API
-        console.log("Insert your sentences");
+        const res = await axios.post("/api/reviews", {
+          sentences,
+        });
+        console.log(res);
+        console.log("Sent your sentences: ");
+        console.log(sentences);
+        commit("setSentences", sentences);
       } catch (err) {
         console.error("Errors!", err);
       }

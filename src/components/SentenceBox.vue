@@ -1,7 +1,7 @@
 <template>
   <div class="sentenceBox">
     <input type="text" placeholder="Write your sentences" v-model="sentences" @change="test" />
-    <button>Submit your sentences</button>
+    <button @click="postSentences">Submit your sentences</button>
   </div>
 </template>
 
@@ -19,9 +19,9 @@ export default {
       // FIXME: Just for test
       console.log(this.$data.sentences);
     },
-  },
-  async created() {
-    this.$store.dispatch("getRandomEnglishWord");
+    postSentences() {
+      this.$store.dispatch("saveSentences", this.$data.sentences);
+    },
   },
 };
 </script>

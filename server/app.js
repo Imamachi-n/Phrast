@@ -11,6 +11,9 @@ app.use(
   )
 );
 
+// Add body-parser
+app.use(express.json());
+
 // Serve static assets
 app.use(express.static(path.resolve(__dirname, "..", "dist")));
 
@@ -24,6 +27,19 @@ app.get("/api/words/:levelId", async (req, res) => {
     res.json(wordsByLevel);
   } catch (err) {
     console.error("Error loading locations!", err);
+    res.sendStatus(500);
+  }
+});
+
+app.post("/api/reviews", async (req, res) => {
+  try {
+    const { sentences } = req.body;
+    // const getNumber = await db("")
+
+    // TODO: Reviewsの番号を返す
+    res.status(200).json("Number");
+  } catch (err) {
+    console.error("Error posting your sentences!", err);
     res.sendStatus(500);
   }
 });

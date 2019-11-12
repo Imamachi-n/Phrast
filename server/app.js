@@ -2,6 +2,7 @@ const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
 const db = require("./knex");
+const axios = require("axios");
 const app = express();
 
 // Setup Logger
@@ -86,12 +87,46 @@ app.post("/api/sentences", async (req, res) => {
       sentence: sentences,
     });
 
+    let sentence_id = await db("sentences").max("id");
+    sentence_id = sentence_id[0].max;
+    await postGrammerChecks(sentence_id, sentences);
+
     res.sendStatus(200);
   } catch (err) {
     console.error("Error posting your sentences!", err);
     res.sendStatus(500);
   }
 });
+
+async function postGrammerChecks(sentence_id, sentences) {
+  try {
+    const axiosMod = axios.create({
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+      responseType: "json",
+    });
+    const { data } = await axiosMod.get(
+      "http://api.grammarbot.io/v2/check?&language=en-US&text=" +
+        encodeURI(sentences)
+    );
+    if (data.matches !== undefined) {
+      data.matches.forEach(async (item) => {
+        await db("grammer_checks").insert({
+          sentence_id,
+          message: item.message,
+          short_message: item.shortMessage,
+          target: item.sentence.slice(
+            Number(item.offset),
+            Number(item.offset) + Number(item.length)
+          ),
+        });
+      });
+    }
+  } catch (err) {
+    console.error("Error posting your sentences!", err);
+  }
+}
 
 // Always return the main index.html, since we are developing a single page application
 app.get("*", (req, res) => {

@@ -10,6 +10,8 @@ exports.up = function(knex) {
 
     table.integer("order");
 
+    table.string("word");
+
     table.text("sentence");
   });
 };

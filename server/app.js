@@ -37,16 +37,16 @@ app.get("/api/reviews/all", async (req, res) => {
     let data = await db("reviews")
       .join("sentences", "reviews.id", "=", "sentences.review_id")
       .select({
-        id: "reviews.id",
+        id: "sentences.id",
         order: "sentences.order",
-        at_datetime: "reviews.at_datetime",
+        word: "sentences.word",
         sentence: "sentences.sentence",
+        at_datetime: "reviews.at_datetime",
       })
       .orderBy("sentences.order")
       .orderBy("reviews.id");
 
-    console.log(data);
-    res.status(200).json(data);
+    res.json(data);
   } catch (err) {
     console.error("Error posting your game!", err);
     res.sendStatus(500);
@@ -78,10 +78,11 @@ app.post("/api/reviews", async (req, res) => {
 
 app.post("/api/sentences", async (req, res) => {
   try {
-    const { gameNo, sentences } = req.body;
+    const { gameNo, word, sentences } = req.body;
     await db("sentences").insert({
       review_id: gameNo,
       order: 1,
+      word,
       sentence: sentences,
     });
 

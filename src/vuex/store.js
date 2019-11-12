@@ -10,6 +10,7 @@ export default new Vuex.Store({
     word: "",
     sentences: "",
     gameNo: "",
+    reviewSentences: [],
   },
   mutations: {
     setWord(state, word) {
@@ -20,6 +21,9 @@ export default new Vuex.Store({
     },
     setGame(state, gameNo) {
       state.gameNo = gameNo;
+    },
+    setReviewSentences(state, reviewSentences) {
+      state.reviewSentences = reviewSentences;
     },
   },
   actions: {
@@ -49,6 +53,7 @@ export default new Vuex.Store({
       try {
         const res = await axios.post("/api/sentences", {
           gameNo: this.state.gameNo,
+          word: this.state.word,
           sentences,
         });
         console.log("Sent your sentences: ");
@@ -73,10 +78,21 @@ export default new Vuex.Store({
         console.error("Errors!", err);
       }
     },
+    async getReviewSentencesFromDB({ commit }) {
+      try {
+        let { data: reviewSentences } = await axios.get("/api/reviews/all");
+        commit("setReviewSentences", reviewSentences);
+      } catch (err) {
+        console.error("ERROR: ", err);
+      }
+    },
   },
   getters: {
     getWord(state) {
       return state.word;
+    },
+    getReviewSentences(state) {
+      return state.reviewSentences;
     },
   },
 });

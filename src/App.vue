@@ -43,6 +43,9 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+h1 {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+}
 </style>
 
 <style scoped>

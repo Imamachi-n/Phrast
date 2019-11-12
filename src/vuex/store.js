@@ -15,7 +15,7 @@ export default new Vuex.Store({
     gameOver: 3,
     isFinishedGame: false,
     timeCountIntervalId: undefined,
-    timeCount: 0,
+    timeCount: 5,
     timeOver: 5,
   },
   mutations: {
@@ -125,18 +125,18 @@ export default new Vuex.Store({
       this.dispatch("setTimeCountIntervalIdAction", undefined);
     },
     setTimeCountAction({ commit }) {
-      const timeCount = this.getters["getTimeCount"] + 1;
+      const timeCount = this.getters["getTimeCount"] - 1;
       commit("setTimeCount", timeCount);
     },
     clearTimeCountAction({ commit }) {
-      commit("setTimeCount", 0);
+      commit("setTimeCount", this.state.timeOver);
     },
     setTimeOverAction({ commit }, timeOver) {
       commit("setTimeOver", timeOver);
     },
     async nextWord() {
       // Reset timeCount
-      this.dispatch("clearTimeCountAction", 0);
+      this.dispatch("clearTimeCountAction");
 
       // Store gameCount
       this.dispatch("setGameCountAction", this.getters["getGameCount"] + 1);

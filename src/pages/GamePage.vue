@@ -44,21 +44,16 @@ export default {
       }
 
       // save IntervalId and timeCounter
-      this.$store.dispatch(
-        "setTimeCountIntervalIdAction",
-        setInterval(this.timeCount, 1000)
-      );
+      const test = setInterval(this.timeCount, 1000);
+      this.$store.dispatch("setTimeCountIntervalIdAction", test);
     },
     timeCount() {
       // set timeCount to store
-      this.$store.dispatch("setTimeCountAction");
       console.log(this.$store.getters["getTimeCount"]);
+      this.$store.dispatch("setTimeCountAction");
 
       // if timeover, execute nextWord() and reset timeCount
-      if (
-        this.$store.getters["getTimeCount"] >=
-        this.$store.getters["getTimeOver"]
-      ) {
+      if (this.$store.getters["getTimeCount"] <= 0) {
         // Post sentences
         this.$store.dispatch("saveSentences", "FAILED...");
         this.$store.dispatch("nextWord");

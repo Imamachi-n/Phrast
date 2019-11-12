@@ -1,8 +1,28 @@
 <template>
   <div class="gameSelect">
-    <h2>GameSelect</h2>
-    <v-btn x-large color="primary" @click.native="basicMode" to="/game">Basic Mode</v-btn>
-    <v-btn x-large color="accent" @click.native="hellMode" to="/game">Hell Mode...</v-btn>
+    <v-row>
+      <v-col class="text-center">
+        <h1 class="mt-5">
+          <v-icon color="black" class="mr-2 mb-1">fas fa-gamepad</v-icon>GameSelect
+        </h1>
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col class="text-center">
+        <v-btn x-large color="primary" @click.native="basicMode" to="/game">
+          <v-icon class="mr-2">fas fa-egg</v-icon>Basic Mode
+        </v-btn>
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col class="text-center">
+        <v-btn x-large color="accent" @click.native="hellMode" to="/game">
+          <v-icon class="mr-2">fas fa-haykal</v-icon>Hell Mode
+        </v-btn>
+      </v-col>
+    </v-row>
   </div>
 </template>
 

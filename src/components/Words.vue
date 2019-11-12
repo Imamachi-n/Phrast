@@ -12,8 +12,7 @@ export default {
   },
   methods: {},
   async created() {
-    if (this.$store.getters["getWord"] === "")
-      this.$store.dispatch("getRandomEnglishWord");
+    this.$store.dispatch("getRandomEnglishWord");
   },
 };
 </script>

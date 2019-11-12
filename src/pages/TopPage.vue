@@ -5,7 +5,7 @@
         <v-col class="text-center">
           <h1 class="pb-10 pt-12">Welcome to English Training App</h1>
           <v-spacer></v-spacer>
-          <v-btn x-large color="primary" @click.native="clickStart" to="/game">Game Start!!</v-btn>
+          <v-btn x-large color="primary" to="/gameSelect">Game Start!!</v-btn>
         </v-col>
       </v-row>
     </div>
@@ -15,20 +15,6 @@
 <script>
 export default {
   name: "topPage",
-  methods: {
-    clickStart() {
-      // FIXME: gameLevel: 1
-      console.log("Game Start!!");
-      this.$store.dispatch("startGame", 1);
-
-      // Reset game status
-      this.$store.dispatch("setIsFinishedGame", false);
-      this.$store.dispatch("setGameCountAction", 0);
-
-      // Reset timeCount
-      this.$store.dispatch("setTimeCountAction", 0);
-    },
-  },
 };
 </script>
 

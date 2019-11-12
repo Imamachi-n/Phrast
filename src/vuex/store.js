@@ -51,9 +51,7 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    async getRandomEnglishWord({
-      commit
-    }) {
+    async getRandomEnglishWord({ commit }) {
       try {
         // const credential = JSON.parse(
         //   fs.readFileSync("../../config/wordAPI-credential.json")
@@ -61,8 +59,10 @@ export default new Vuex.Store({
         const axiosMod = axios.create({
           baseURL: "https://wordsapiv1.p.rapidapi.com/words",
           headers: {
-            "x-rapidapi-host": process.env.X_RAPIDAPI_HOST || "wordsapiv1.p.rapidapi.com",
-            "x-rapidapi-key": process.env.X_RAPIDAPI_KEY ||
+            "x-rapidapi-host":
+              process.env.X_RAPIDAPI_HOST || "wordsapiv1.p.rapidapi.com",
+            "x-rapidapi-key":
+              process.env.X_RAPIDAPI_KEY ||
               "3e7c7ba41cmsh93925d89a2c673ep120a12jsnc003729faf62",
           },
           responseType: "json",
@@ -73,9 +73,7 @@ export default new Vuex.Store({
         console.error("Errors!", err);
       }
     },
-    async saveSentences({
-      commit
-    }, sentences) {
+    async saveSentences({ commit }, sentences) {
       try {
         const res = await axios.post("/api/sentences", {
           gameNo: this.state.gameNo,
@@ -91,9 +89,7 @@ export default new Vuex.Store({
         console.error("Errors!", err);
       }
     },
-    async startGame({
-      commit
-    }, gameLevel) {
+    async startGame({ commit }, gameLevel) {
       try {
         const res = await axios.post("/api/reviews", {
           gameLevel,
@@ -103,36 +99,24 @@ export default new Vuex.Store({
         console.error("Errors!", err);
       }
     },
-    async getReviewSentencesFromDB({
-      commit
-    }) {
+    async getReviewSentencesFromDB({ commit }) {
       try {
-        let {
-          data: reviewSentences
-        } = await axios.get("/api/reviews/all");
+        let { data: reviewSentences } = await axios.get("/api/reviews/all");
         commit("setReviewSentences", reviewSentences);
       } catch (err) {
         console.error("ERROR: ", err);
       }
     },
-    setGameCountAction({
-      commit
-    }, gameCount) {
+    setGameCountAction({ commit }, gameCount) {
       commit("setGameCount", gameCount);
     },
-    setGameOverAction({
-      commit
-    }, gameOver) {
+    setGameOverAction({ commit }, gameOver) {
       commit("setGameOver", gameOver);
     },
-    setIsFinishedGame({
-      commit
-    }, isFinishedGame) {
+    setIsFinishedGame({ commit }, isFinishedGame) {
       commit("setIsFinishedGame", isFinishedGame);
     },
-    setTimeCountIntervalIdAction({
-      commit
-    }, timeCountIntervalId) {
+    setTimeCountIntervalIdAction({ commit }, timeCountIntervalId) {
       commit("setTimeCountIntervalId", timeCountIntervalId);
     },
     clearTimeCountInternalIdAction() {
@@ -140,20 +124,14 @@ export default new Vuex.Store({
       this.dispatch("clearTimeCountAction");
       this.dispatch("setTimeCountIntervalIdAction", undefined);
     },
-    setTimeCountAction({
-      commit
-    }) {
+    setTimeCountAction({ commit }) {
       const timeCount = this.getters["getTimeCount"] - 1;
       commit("setTimeCount", timeCount);
     },
-    clearTimeCountAction({
-      commit
-    }) {
+    clearTimeCountAction({ commit }) {
       commit("setTimeCount", this.state.timeOver);
     },
-    setTimeOverAction({
-      commit
-    }, timeOver) {
+    setTimeOverAction({ commit }, timeOver) {
       commit("setTimeOver", timeOver);
     },
     async nextWord() {

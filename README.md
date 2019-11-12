@@ -54,7 +54,7 @@ An API for the English Language. WordsAPI includes the definitions for more than
 
 ## Project Status
 
-View our responsive webapp @ [[spotak.herokuapp.com](https://english-speak-training.herokuapp.com/)](https://english-speak-training.herokuapp.com/). This project is currently in development.
+View our responsive webapp @ [https://english-speak-training.herokuapp.com/](https://english-speak-training.herokuapp.com/). This project is currently in development.
 
 **Current Features:**
 

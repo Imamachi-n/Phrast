@@ -34,7 +34,6 @@ export default {
   methods: {},
   async created() {
     this.$store.dispatch("getReviewSentencesFromDB");
-    console.log(this.$store.getters["getReviewSentences"][0]);
   },
 };
 </script>

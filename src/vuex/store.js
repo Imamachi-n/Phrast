@@ -11,6 +11,7 @@ export default new Vuex.Store({
     sentences: "",
     gameNo: "",
     reviewSentences: [],
+    grammerChecks: [],
     gameCount: 0,
     gameOver: 3,
     gameLevel: 1,
@@ -31,6 +32,9 @@ export default new Vuex.Store({
     },
     setReviewSentences(state, reviewSentences) {
       state.reviewSentences = reviewSentences;
+    },
+    setGrammerChecks(state, grammerChecks) {
+      state.grammerChecks = grammerChecks;
     },
     setGameCount(state, gameCount) {
       state.gameCount = gameCount;
@@ -119,6 +123,16 @@ export default new Vuex.Store({
         console.error("ERROR: ", err);
       }
     },
+
+    async getGrammerChecksFromDB({ commit }) {
+      try {
+        let { data: grammerChecks } = await axios.get("/api/grammer_check/all");
+        commit("setGrammerChecks", grammerChecks);
+      } catch (err) {
+        console.error("ERROR: ", err);
+      }
+    },
+
     setGameCountAction({ commit }, gameCount) {
       commit("setGameCount", gameCount);
     },
@@ -173,6 +187,9 @@ export default new Vuex.Store({
     },
     getReviewSentences(state) {
       return state.reviewSentences;
+    },
+    getGrammerChecks(state) {
+      return state.grammerChecks;
     },
     getGameCount(state) {
       return state.gameCount;

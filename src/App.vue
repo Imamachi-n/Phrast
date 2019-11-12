@@ -9,7 +9,7 @@
 
         <v-spacer></v-spacer>
 
-        <v-btn icon>
+        <v-btn icon to="/grammer_check">
           <v-icon>fas fa-check</v-icon>
         </v-btn>
 

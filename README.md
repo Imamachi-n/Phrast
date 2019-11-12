@@ -4,6 +4,10 @@
 
 Phrast is the training app of English Speaking for non-native speaker.
 
+## Heroku sample app
+
+[Phrast: The training app of English Speaking](https://english-speak-training.herokuapp.com/)
+
 ## Architecture
 
 ![architecture](./img/technology.png)
@@ -77,6 +81,8 @@ View our responsive webapp @ [https://english-speak-training.herokuapp.com/](htt
 ![image3](./img/image3.png)
 
 ![image4](./img/image4.png)
+
+![image5](./img/image5.png)
 
 ## license
 

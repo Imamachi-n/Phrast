@@ -128,6 +128,30 @@ async function postGrammerChecks(sentence_id, sentences) {
   }
 }
 
+app.get("/api/grammer_check/all", async (req, res) => {
+  try {
+    // Get all reviews
+    let data = await db("sentences")
+      .join("grammer_checks", "sentences.id", "=", "grammer_checks.sentence_id")
+      .select({
+        id: "grammer_checks.id",
+        order: "sentences.order",
+        word: "sentences.word",
+        sentence: "sentences.sentence",
+        message: "grammer_checks.message",
+        short_message: "grammer_checks.short_message",
+        target: "grammer_checks.target",
+      })
+      .orderBy("sentences.order")
+      .orderBy("sentences.id");
+
+    res.json(data);
+  } catch (err) {
+    console.error("Error posting your game!", err);
+    res.sendStatus(500);
+  }
+});
+
 // Always return the main index.html, since we are developing a single page application
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "..", "dist", "index.html"));

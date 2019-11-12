@@ -6,14 +6,19 @@ import ConfigPage from "../pages/ConfigPage";
 import GamePage from "../pages/GamePage.vue";
 import ReviewPage from "../pages/ReviewPage.vue";
 import GameSelectPage from "../pages/GameSelectPage.vue";
+import GrammerCheckPage from "../pages/GrammerCheckPage.vue";
+
 
 Vue.use(Router);
 
 export default new Router({
-  routes: [
-    {
+  routes: [{
       path: "/",
       component: TopPage,
+    },
+    {
+      path: "/grammer_check",
+      component: GrammerCheckPage,
     },
     {
       path: "/config",

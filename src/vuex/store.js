@@ -11,6 +11,9 @@ export default new Vuex.Store({
     sentences: "",
     gameNo: "",
     reviewSentences: [],
+    gameCount: 0,
+    gameOver: 3,
+    isFinishedGame: false,
   },
   mutations: {
     setWord(state, word) {
@@ -24,6 +27,15 @@ export default new Vuex.Store({
     },
     setReviewSentences(state, reviewSentences) {
       state.reviewSentences = reviewSentences;
+    },
+    setGameCount(state, gameCount) {
+      state.gameCount = gameCount;
+    },
+    setGameOver(state, gameOver) {
+      state.gameOver = gameOver;
+    },
+    setIsFinishedGame(state, isFinishedGame) {
+      state.isFinishedGame = isFinishedGame;
     },
   },
   actions: {
@@ -56,8 +68,6 @@ export default new Vuex.Store({
           word: this.state.word,
           sentences,
         });
-        console.log("Sent your sentences: ");
-        console.log(sentences);
         if (res.status === 200 && res.statusText === "OK") {
           commit("setSentences", sentences);
         } else {
@@ -72,7 +82,6 @@ export default new Vuex.Store({
         const res = await axios.post("/api/reviews", {
           gameLevel,
         });
-        console.log(res);
         commit("setGame", res.data.gameNo);
       } catch (err) {
         console.error("Errors!", err);
@@ -86,6 +95,15 @@ export default new Vuex.Store({
         console.error("ERROR: ", err);
       }
     },
+    setGameCountAction({ commit }, gameCount) {
+      commit("setGameCount", gameCount);
+    },
+    setGameOverAction({ commit }, gameOver) {
+      commit("setGameOver", gameOver);
+    },
+    setIsFinishedGame({ commit }, isFinishedGame) {
+      commit("setIsFinishedGame", isFinishedGame);
+    },
   },
   getters: {
     getWord(state) {
@@ -93,6 +111,15 @@ export default new Vuex.Store({
     },
     getReviewSentences(state) {
       return state.reviewSentences;
+    },
+    getGameCount(state) {
+      return state.gameCount;
+    },
+    getGameOver(state) {
+      return state.gameOver;
+    },
+    getIsFinishedGame(state) {
+      return state.isFinishedGame;
     },
   },
 });

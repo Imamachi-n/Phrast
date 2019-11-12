@@ -33,12 +33,27 @@ export default {
   }),
   methods: {
     postSentences() {
+      // Post sentences
       this.$store.dispatch("saveSentences", this.$data.sentences);
-      // FIXME: Just for test
-      const test = true;
+
+      // Store gameCount
+      this.$store.dispatch(
+        "setGameCountAction",
+        this.$store.getters["getGameCount"] + 1
+      );
+
+      // Check isFinish or not
+      console.log(this.$store.getters["getGameCount"]);
+      console.log(this.$store.getters["getGameOver"]);
+      const test =
+        this.$store.getters["getGameCount"] ===
+        this.$store.getters["getGameOver"];
       if (test) {
+        // finished
+        this.$store.dispatch("setIsFinishedGame", true);
+      } else {
+        // not finished
         this.$store.dispatch("getRandomEnglishWord");
-        console.log("JUST TEST!!");
       }
     },
   },

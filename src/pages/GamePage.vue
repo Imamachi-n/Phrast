@@ -1,10 +1,14 @@
 <template>
   <div class="config">
-    <v-row>
+    <v-row v-if="!$store.getters['getIsFinishedGame']">
       <v-col class="text-center">
         <Words msg="Welcome to English Training App" />
         <SentenceBox></SentenceBox>
       </v-col>
+    </v-row>
+
+    <v-row v-if="$store.getters['getIsFinishedGame']">
+      <h1>Finished!!</h1>
     </v-row>
   </div>
 </template>
@@ -19,9 +23,11 @@ export default {
     Words,
     SentenceBox,
   },
-  data: () => ({
-    isStarted: false,
-  }),
+  created() {
+    this.$store.dispatch("setIsFinishedGame", false);
+    this.$store.dispatch("setGameCountAction", 0);
+  },
+  methods: {},
 };
 </script>
 

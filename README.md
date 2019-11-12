@@ -7,3 +7,7 @@ English speaking training app
 psql
 postgres=#create database engl;
 ```
+
+### English words
+
+http://www2.cmp.uea.ac.uk/~jrk/conlang.dir/LongmanVocab.html

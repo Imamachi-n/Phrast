@@ -1,4 +1,4 @@
-const jsonData = require("./words.json");
+const jsonData = require("./The_Longman_Defining_Vocabulary.json");
 
 exports.seed = (knex) => {
   // Deletes ALL existing entries

@@ -163,6 +163,9 @@ export default new Vuex.Store({
     setTimeOverAction({ commit }, timeOver) {
       commit("setTimeOver", timeOver);
     },
+    initializeTimeCountAction({ commit }, timeCount) {
+      commit("setTimeCount", timeCount);
+    },
     async nextWord() {
       // Reset timeCount
       this.dispatch("clearTimeCountAction");

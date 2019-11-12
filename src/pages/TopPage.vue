@@ -5,7 +5,9 @@
         <v-col class="text-center">
           <h1 class="pb-10 pt-12">Welcome to English Training App</h1>
           <v-spacer></v-spacer>
-          <v-btn x-large color="primary" to="/gameSelect">Game Start!!</v-btn>
+          <v-btn x-large color="primary" to="/gameSelect">
+            <v-icon color="white" class="mr-2">fas fa-gamepad</v-icon>Game Start!!
+          </v-btn>
         </v-col>
       </v-row>
     </div>

@@ -137,8 +137,6 @@ export default new Vuex.Store({
     async nextWord() {
       // Reset timeCount
       this.dispatch("clearTimeCountAction", 0);
-      // TODO: Post sentences
-      //   this.$store.dispatch("saveSentences", this.$data.sentences);
 
       // Store gameCount
       this.dispatch("setGameCountAction", this.getters["getGameCount"] + 1);

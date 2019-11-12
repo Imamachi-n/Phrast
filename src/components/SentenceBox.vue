@@ -36,23 +36,7 @@ export default {
       // Post sentences
       this.$store.dispatch("saveSentences", this.$data.sentences);
 
-      // Store gameCount
-      this.$store.dispatch(
-        "setGameCountAction",
-        this.$store.getters["getGameCount"] + 1
-      );
-
-      // Check isFinish or not
-      if (
-        this.$store.getters["getGameCount"] ===
-        this.$store.getters["getGameOver"]
-      ) {
-        // finished
-        this.$store.dispatch("setIsFinishedGame", true);
-      } else {
-        // not finished
-        this.$store.dispatch("getRandomEnglishWord");
-      }
+      this.$store.dispatch("nextWord");
     },
   },
 };

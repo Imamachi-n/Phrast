@@ -59,34 +59,12 @@ export default {
         this.$store.getters["getTimeCount"] >=
         this.$store.getters["getTimeOver"]
       ) {
+        // Post sentences
+        this.$store.dispatch("saveSentences", "FAILED...");
         this.$store.dispatch("nextWord");
         console.log("Next");
       }
     },
-    // nextWord() {
-    //   // Reset timeCount
-    //   this.$store.dispatch("getTimeCount", 0);
-    //   // Post sentences
-    //   //   this.$store.dispatch("saveSentences", this.$data.sentences);
-
-    //   // Store gameCount
-    //   this.$store.dispatch(
-    //     "setGameCountAction",
-    //     this.$store.getters["getGameCount"] + 1
-    //   );
-
-    //   // Check isFinish or not
-    //   if (
-    //     this.$store.getters["getGameCount"] ===
-    //     this.$store.getters["getGameOver"]
-    //   ) {
-    //     // finished
-    //     this.$store.dispatch("setIsFinishedGame", true);
-    //   } else {
-    //     // not finished
-    //     this.$store.dispatch("getRandomEnglishWord");
-    //   }
-    // },
   },
 };
 </script>

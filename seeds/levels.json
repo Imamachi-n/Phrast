@@ -1,21 +1,16 @@
 [{
         "id": 1,
-        "level": "Easy",
-        "description": "Use 500 words"
+        "level": "Basic Mode",
+        "description": "Use about 2000 words"
     },
     {
         "id": 2,
-        "level": "Normal",
-        "description": "Use 1000 words"
+        "level": "Hell Mode",
+        "description": "Randomly selected words from WordsAPI (+150,000 words)"
     },
     {
         "id": 3,
-        "level": "Difficult",
-        "description": "Use 2000 words"
-    },
-    {
-        "id": 4,
-        "level": "Programming",
+        "level": "Programmer Mode",
         "description": "The term of technical words related with Programming"
     }
 ]

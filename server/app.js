@@ -19,10 +19,10 @@ app.use(express.static(path.resolve(__dirname, "..", "dist")));
 
 app.get("/api/words/:levelId", async (req, res) => {
   try {
-    const { levelId } = req.params();
+    const { levelId } = req.params;
     const wordsByLevel = await db("words")
       .select()
-      .where("level_id", levelId);
+      .where("level_id", Number(levelId));
 
     res.json(wordsByLevel);
   } catch (err) {

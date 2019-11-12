@@ -13,6 +13,7 @@ export default new Vuex.Store({
     reviewSentences: [],
     gameCount: 0,
     gameOver: 3,
+    gameLevel: 1,
     isFinishedGame: false,
     timeCountIntervalId: undefined,
     timeCount: 10,
@@ -37,6 +38,9 @@ export default new Vuex.Store({
     setGameOver(state, gameOver) {
       state.gameOver = gameOver;
     },
+    setGameLevel(state, gameLevel) {
+      state.gameLevel = gameLevel;
+    },
     setIsFinishedGame(state, isFinishedGame) {
       state.isFinishedGame = isFinishedGame;
     },
@@ -56,19 +60,27 @@ export default new Vuex.Store({
         // const credential = JSON.parse(
         //   fs.readFileSync("../../config/wordAPI-credential.json")
         // );
-        const axiosMod = axios.create({
-          baseURL: "https://wordsapiv1.p.rapidapi.com/words",
-          headers: {
-            "x-rapidapi-host":
-              process.env.X_RAPIDAPI_HOST || "wordsapiv1.p.rapidapi.com",
-            "x-rapidapi-key":
-              process.env.X_RAPIDAPI_KEY ||
-              "3e7c7ba41cmsh93925d89a2c673ep120a12jsnc003729faf62",
-          },
-          responseType: "json",
-        });
-        const res = await axiosMod.get("?random=true");
-        commit("setWord", res.data.word);
+        if (this.state.gameLevel === 1) {
+          // Basic Mode
+          const res = await axios.get("/api/words/1");
+          const words = res.data.map((item) => item.word);
+          commit("setWord", words[Math.floor(Math.random() * words.length)]);
+        } else if (this.state.gameLevel === 2) {
+          // Hell Mode
+          const axiosMod = axios.create({
+            baseURL: "https://wordsapiv1.p.rapidapi.com/words",
+            headers: {
+              "x-rapidapi-host":
+                process.env.X_RAPIDAPI_HOST || "wordsapiv1.p.rapidapi.com",
+              "x-rapidapi-key":
+                process.env.X_RAPIDAPI_KEY ||
+                "3e7c7ba41cmsh93925d89a2c673ep120a12jsnc003729faf62",
+            },
+            responseType: "json",
+          });
+          const res = await axiosMod.get("?random=true");
+          commit("setWord", res.data.word);
+        }
       } catch (err) {
         console.error("Errors!", err);
       }
@@ -112,6 +124,9 @@ export default new Vuex.Store({
     },
     setGameOverAction({ commit }, gameOver) {
       commit("setGameOver", gameOver);
+    },
+    setGameLevelAction({ commit }, gameLevel) {
+      commit("setGameLevel", gameLevel);
     },
     setIsFinishedGame({ commit }, isFinishedGame) {
       commit("setIsFinishedGame", isFinishedGame);
@@ -164,6 +179,9 @@ export default new Vuex.Store({
     },
     getGameOver(state) {
       return state.gameOver;
+    },
+    getGameLevel(state) {
+      return state.gameLevel;
     },
     getIsFinishedGame(state) {
       return state.isFinishedGame;

@@ -16,6 +16,7 @@
     <v-row v-if="$store.getters['getIsFinishedGame']">
       <v-col class="text-center">
         <h1>Finished!!</h1>
+        <SpeechBubble :size="220" mood="happy" color="#83D1FB" />
       </v-col>
     </v-row>
   </div>
@@ -24,12 +25,14 @@
 <script>
 import Words from "../components/Words.vue";
 import SentenceBox from "../components/SentenceBox.vue";
+import { SpeechBubble } from "vue-kawaii";
 
 export default {
   name: "gamePage",
   components: {
     Words,
     SentenceBox,
+    SpeechBubble,
   },
   created() {
     // Start timer

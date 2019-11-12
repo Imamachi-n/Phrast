@@ -3,6 +3,7 @@
     <v-row v-if="!$store.getters['getIsFinishedGame']">
       <v-col class="text-center">
         <Words msg="Welcome to English Training App" />
+        <v-progress-linear color="teal" buffer-value="0" :value="progressBar" stream></v-progress-linear>
         <SentenceBox></SentenceBox>
       </v-col>
     </v-row>
@@ -15,7 +16,7 @@
 
     <v-row v-if="$store.getters['getIsFinishedGame']">
       <v-col class="text-center">
-        <h1>Finished!!</h1>
+        <h1>Finished. Good Job!!</h1>
         <SpeechBubble :size="220" mood="happy" color="#83D1FB" />
       </v-col>
     </v-row>
@@ -34,6 +35,9 @@ export default {
     SentenceBox,
     SpeechBubble,
   },
+  data: () => ({
+    progressBar: 100,
+  }),
   created() {
     // Start timer
     this.timer();
@@ -51,6 +55,13 @@ export default {
       this.$store.dispatch("setTimeCountIntervalIdAction", test);
     },
     timeCount() {
+      // setting Progress ber
+      this.$data.progressBar = Math.floor(
+        (this.$store.getters["getTimeCount"] /
+          this.$store.getters["getTimeOver"]) *
+          100
+      );
+
       // set timeCount to store
       console.log(this.$store.getters["getTimeCount"]);
       this.$store.dispatch("setTimeCountAction");
@@ -69,6 +80,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+h1 {
+  font-size: 56px;
+}
 h3 {
   margin: 40px 0 0;
 }

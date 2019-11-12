@@ -18,7 +18,15 @@ export default {
   methods: {
     clickStart() {
       // FIXME: gameLevel: 1
+      console.log("Game Start!!");
       this.$store.dispatch("startGame", 1);
+
+      // Reset game status
+      this.$store.dispatch("setIsFinishedGame", false);
+      this.$store.dispatch("setGameCountAction", 0);
+
+      // Reset timeCount
+      this.$store.dispatch("setTimeCountAction", 0);
     },
   },
 };

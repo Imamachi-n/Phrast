@@ -7,8 +7,16 @@
       </v-col>
     </v-row>
 
+    <v-row>
+      <v-col class="text-center">
+        <h1>{{$store.getters['timeCount']}}</h1>
+      </v-col>
+    </v-row>
+
     <v-row v-if="$store.getters['getIsFinishedGame']">
-      <h1>Finished!!</h1>
+      <v-col class="text-center">
+        <h1>Finished!!</h1>
+      </v-col>
     </v-row>
   </div>
 </template>
@@ -24,10 +32,62 @@ export default {
     SentenceBox,
   },
   created() {
-    this.$store.dispatch("setIsFinishedGame", false);
-    this.$store.dispatch("setGameCountAction", 0);
+    // Start timer
+    this.timer();
   },
-  methods: {},
+  methods: {
+    timer() {
+      // clearInterval if there is previous timer
+      if (this.$store.getters["getTimeCountIntervalId"] !== undefined) {
+        this.$store.dispatch("clearTimeCountInternalIdAction");
+        console.log("Clear!!");
+      }
+
+      // save IntervalId and timeCounter
+      this.$store.dispatch(
+        "setTimeCountIntervalIdAction",
+        setInterval(this.timeCount, 1000)
+      );
+    },
+    timeCount() {
+      // set timeCount to store
+      this.$store.dispatch("setTimeCountAction");
+      console.log(this.$store.getters["getTimeCount"]);
+
+      // if timeover, execute nextWord() and reset timeCount
+      if (
+        this.$store.getters["getTimeCount"] >=
+        this.$store.getters["getTimeOver"]
+      ) {
+        this.$store.dispatch("nextWord");
+        console.log("Next");
+      }
+    },
+    // nextWord() {
+    //   // Reset timeCount
+    //   this.$store.dispatch("getTimeCount", 0);
+    //   // Post sentences
+    //   //   this.$store.dispatch("saveSentences", this.$data.sentences);
+
+    //   // Store gameCount
+    //   this.$store.dispatch(
+    //     "setGameCountAction",
+    //     this.$store.getters["getGameCount"] + 1
+    //   );
+
+    //   // Check isFinish or not
+    //   if (
+    //     this.$store.getters["getGameCount"] ===
+    //     this.$store.getters["getGameOver"]
+    //   ) {
+    //     // finished
+    //     this.$store.dispatch("setIsFinishedGame", true);
+    //   } else {
+    //     // not finished
+    //     this.$store.dispatch("getRandomEnglishWord");
+    //   }
+    // },
+  },
 };
 </script>
 

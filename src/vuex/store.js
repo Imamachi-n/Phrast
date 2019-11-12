@@ -14,6 +14,9 @@ export default new Vuex.Store({
     gameCount: 0,
     gameOver: 3,
     isFinishedGame: false,
+    timeCountIntervalId: undefined,
+    timeCount: 0,
+    timeOver: 5,
   },
   mutations: {
     setWord(state, word) {
@@ -36,6 +39,15 @@ export default new Vuex.Store({
     },
     setIsFinishedGame(state, isFinishedGame) {
       state.isFinishedGame = isFinishedGame;
+    },
+    setTimeCountIntervalId(state, timeCountIntervalId) {
+      state.timeCountIntervalId = timeCountIntervalId;
+    },
+    setTimeCount(state, timeCount) {
+      state.timeCount = timeCount;
+    },
+    setTimeOver(state, timeOver) {
+      state.timeOver = timeOver;
     },
   },
   actions: {
@@ -104,6 +116,43 @@ export default new Vuex.Store({
     setIsFinishedGame({ commit }, isFinishedGame) {
       commit("setIsFinishedGame", isFinishedGame);
     },
+    setTimeCountIntervalIdAction({ commit }, timeCountIntervalId) {
+      commit("setTimeCountIntervalId", timeCountIntervalId);
+    },
+    clearTimeCountInternalIdAction() {
+      clearInterval(this.state.timeCountIntervalId);
+      this.dispatch("clearTimeCountAction");
+      this.dispatch("setTimeCountIntervalIdAction", undefined);
+    },
+    setTimeCountAction({ commit }) {
+      const timeCount = this.getters["getTimeCount"] + 1;
+      commit("setTimeCount", timeCount);
+    },
+    clearTimeCountAction({ commit }) {
+      commit("setTimeCount", 0);
+    },
+    setTimeOverAction({ commit }, timeOver) {
+      commit("setTimeOver", timeOver);
+    },
+    async nextWord() {
+      // Reset timeCount
+      this.dispatch("clearTimeCountAction", 0);
+      // TODO: Post sentences
+      //   this.$store.dispatch("saveSentences", this.$data.sentences);
+
+      // Store gameCount
+      this.dispatch("setGameCountAction", this.getters["getGameCount"] + 1);
+
+      // Check isFinish or not
+      if (this.getters["getGameCount"] === this.getters["getGameOver"]) {
+        // finished
+        this.dispatch("setIsFinishedGame", true);
+        this.dispatch("clearTimeCountInternalIdAction");
+      } else {
+        // not finished
+        this.dispatch("getRandomEnglishWord");
+      }
+    },
   },
   getters: {
     getWord(state) {
@@ -120,6 +169,15 @@ export default new Vuex.Store({
     },
     getIsFinishedGame(state) {
       return state.isFinishedGame;
+    },
+    getTimeCount(state) {
+      return state.timeCount;
+    },
+    getTimeOver(state) {
+      return state.timeOver;
+    },
+    getTimeCountIntervalId(state) {
+      return state.timeCountIntervalId;
     },
   },
 });

@@ -43,12 +43,10 @@ export default {
       );
 
       // Check isFinish or not
-      console.log(this.$store.getters["getGameCount"]);
-      console.log(this.$store.getters["getGameOver"]);
-      const test =
+      if (
         this.$store.getters["getGameCount"] ===
-        this.$store.getters["getGameOver"];
-      if (test) {
+        this.$store.getters["getGameOver"]
+      ) {
         // finished
         this.$store.dispatch("setIsFinishedGame", true);
       } else {

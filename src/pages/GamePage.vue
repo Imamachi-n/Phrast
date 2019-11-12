@@ -3,7 +3,7 @@
     <v-row v-if="!$store.getters['getIsFinishedGame']">
       <v-col class="text-center">
         <Words msg="Welcome to English Training App" />
-        <v-progress-linear color="teal" buffer-value="0" :value="progressBar" stream></v-progress-linear>
+        <v-progress-linear color="pink lighten-1" buffer-value="0" :value="progressBar" stream></v-progress-linear>
         <SentenceBox></SentenceBox>
       </v-col>
     </v-row>

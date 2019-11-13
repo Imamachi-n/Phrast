@@ -29,7 +29,7 @@ export default {
     msg: String,
   },
   data: () => ({
-    sentences: "TEST",
+    sentences: "",
   }),
   methods: {
     postSentences() {
@@ -37,6 +37,9 @@ export default {
       this.$store.dispatch("saveSentences", this.$data.sentences);
 
       this.$store.dispatch("nextWord");
+
+      // reset textbox
+      this.sentences = "";
     },
   },
 };

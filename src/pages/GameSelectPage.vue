@@ -49,6 +49,9 @@ export default {
 
       // Reset timeCount
       this.$store.dispatch("setTimeCountAction", 0);
+
+      // Reset word
+      this.$store.dispatch("setWord", "...");
     },
   },
 };

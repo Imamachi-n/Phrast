@@ -133,6 +133,9 @@ export default new Vuex.Store({
       }
     },
 
+    setWord({ commit }, word) {
+      commit("setWord", word);
+    },
     setGameCountAction({ commit }, gameCount) {
       commit("setGameCount", gameCount);
     },

@@ -5,7 +5,11 @@
         <v-btn icon to="/">
           <v-icon>mdi-home</v-icon>
         </v-btn>
-        <v-toolbar-title>The training App for English Speaking</v-toolbar-title>
+        <v-toolbar-title>
+          <v-icon class="mb-1 mr-1">far fa-paper-plane</v-icon>
+          <b>Phrast:</b>
+          The training App for English Speaking
+        </v-toolbar-title>
 
         <v-spacer></v-spacer>
 

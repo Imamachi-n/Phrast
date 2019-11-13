@@ -1,8 +1,8 @@
-# Phrast: The training app of English Speaking
+# Phrast: The training app for English
 
 **This was created during my time as a student at [Code Chrysalis](https://www.codechrysalis.io/).**
 
-Phrast is the training app of English Speaking for non-native speaker.
+Phrast is the training app for English for non-native speaker.
 
 ## Heroku sample app
 

@@ -31,7 +31,7 @@ echo "CREATE DATABASE engl | psql
 #### Database migration & Data importing
 
 ```bash
-yarn run rollback:all
+yarn db:setup
 ```
 
 ### 2. Starting REST API server
@@ -43,7 +43,7 @@ yarn dev
 ### 3. Starting Front-end server
 
 ```bash
-yarn start
+yarn serve
 ```
 
 ### Where are English words from?

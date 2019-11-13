@@ -77,6 +77,10 @@ View our responsive webapp @ [https://english-speak-training.herokuapp.com/](htt
 
 - Migrate into AWS
 
+### New Architecture Image
+
+![new_arc](./img/new_architecture_image.png)
+
 ## Screen Shot
 
 ![image1](./img/image1.png)

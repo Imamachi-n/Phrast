@@ -12,6 +12,10 @@ Phrast is the training app of English Speaking for non-native speaker.
 
 ![architecture](./img/technology.png)
 
+## Database Schema
+
+![database](./img/database_schema.png)
+
 ## Setup environment
 
 ### 1. PostgreSQL Database

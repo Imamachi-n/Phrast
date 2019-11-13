@@ -71,6 +71,7 @@ View our responsive webapp @ [https://english-speak-training.herokuapp.com/](htt
 - There is a time limit (ex. 60sec) until users finish to create sentences.
 - There is two kind of level: Basic Mode uses about 2000 words from The Longman Defining Vocabulary. Hell Mode uses about more then 150,000 words from WordsAPI.
 - Users can review what kind of sentences users create before.
+- Users can also check English Grammer for each sentence (by using GrammerBot API which is a Grammer Check API).
 
 **Future Features:**
 
@@ -87,6 +88,8 @@ View our responsive webapp @ [https://english-speak-training.herokuapp.com/](htt
 ![image4](./img/image4.png)
 
 ![image5](./img/image5.png)
+
+![image6](./img/image6.png)
 
 ## license
 
